@@ -1,0 +1,57 @@
+<!--<button mat-raised-button color="primary" >Button</button>-->
+<!--<label>{{testValue}}</label>-->
+<div>
+<mat-form-field class="select-form-field">
+  <mat-label>Select an date</mat-label>
+  <mat-select [(ngModel)]="selectedDate" (selectionChange)="getAllFixtures(selectedDate)" name="date">
+    <mat-option *ngFor="let date of dateArray" [value]="date">{{date.display}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<table mat-table [dataSource]="fixtures">
+
+  <ng-container matColumnDef="fixture_time">
+    <th mat-header-cell *matHeaderCellDef>Time</th>
+    <td mat-cell *matCellDef="let element">{{element.fixture_time}}</td>
+  </ng-container>
+  <ng-container matColumnDef="home_name">
+    <th mat-header-cell *matHeaderCellDef>Home</th>
+    <td mat-cell *matCellDef="let element">{{element.home_name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="away_name">
+    <th mat-header-cell *matHeaderCellDef>Away</th>
+    <td mat-cell *matCellDef="let element">{{element.away_name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="league_name">
+    <th mat-header-cell *matHeaderCellDef>League</th>
+    <td mat-cell *matCellDef="let element">{{element.league_name}}</td>
+  </ng-container>
+  <ng-container matColumnDef="home_score">
+    <th mat-header-cell *matHeaderCellDef>Home</th>
+    <td mat-cell *matCellDef="let element">{{element.scores.home_team_result}}</td>
+  </ng-container>
+  <ng-container matColumnDef="away_score">
+    <th mat-header-cell *matHeaderCellDef>Away</th>
+    <td mat-cell *matCellDef="let element">{{element.scores.away_team_result}}</td>
+  </ng-container>
+  <ng-container matColumnDef="btts">
+    <th mat-header-cell *matHeaderCellDef>BTTS</th>
+    <td mat-cell *matCellDef="let element">{{element.scores.btts}}</td>
+  </ng-container>
+  <ng-container matColumnDef="O1.5">
+  <th mat-header-cell *matHeaderCellDef>O 1.5</th>
+  <td mat-cell *matCellDef="let element">{{element.scores.over_1_5_score}}</td>
+  </ng-container>
+  <ng-container matColumnDef="O2.5">
+  <th mat-header-cell *matHeaderCellDef>O 2.5</th>
+  <td mat-cell *matCellDef="let element">{{element.scores.over_2_5_score}}</td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+</div>
